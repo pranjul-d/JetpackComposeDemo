@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JetpackComposeDemo</string>
+    <string name="title_activity_list_screen">ListScreenActivity</string>
+    <string name="name">Pranjul Dhiman</string>
+</resources>
