@@ -17,20 +17,22 @@ import javax.inject.Inject
 class PostsViewModel @Inject constructor(var postsRepository: PostsRepository) : ViewModel() {
 
     var postMutableLiveData: List<Posts> by mutableStateOf(listOf())
-
+    var isLoading by mutableStateOf(true)
     fun getPostsData(): List<Posts> {
         viewModelScope.launch(Dispatchers.IO) {
             val resource = postsRepository.getPosts()
             resource.let {
                 when(it){
                     is Resource.Loading->{
-
+                        isLoading = true
                     }
                     is Resource.Success->{
                         postMutableLiveData = it.data
+                        isLoading = false
                     }
                     is Resource.Failure->{
                         it.throwable
+                        isLoading = false
                         postMutableLiveData = emptyList()
                     }
                 }

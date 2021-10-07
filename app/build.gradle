@@ -63,6 +63,9 @@ dependencies {
 
     def lifecycle_version = "2.4.0-alpha02"
 
+    // sdp library for response size
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
     // LiveData
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
 

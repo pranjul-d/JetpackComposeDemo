@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,7 +26,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -45,10 +45,12 @@ import com.softradix.jetpackcomposedemo.ui.theme.Teal200
 import com.softradix.jetpackcomposedemo.viewModel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalAnimationApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val viewModel: PostsViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,51 +60,56 @@ class MainActivity : ComponentActivity() {
             JetpackComposeDemoTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android",viewModel = viewModel)
+                    MainView()
                 }
             }
         }
     }
 
-
-    @Preview(showBackground = true)
+    @Preview
     @Composable
-    fun DefaultPreview() {
-        JetpackComposeDemoTheme {
-        Greeting("Android",viewModel = viewModel)
-        }
+    fun MainView() {
+        Greeting("Android", viewModel = viewModel)
+
     }
+
 }
 
+@ExperimentalAnimationApi
 @Composable
-fun Greeting(name: String,viewModel: PostsViewModel) {
+fun Greeting(name: String, viewModel: PostsViewModel) {
     val context = LocalContext.current
-    val listState = rememberLazyListState()
+//    val listState = rememberLazyListState()
 
-    Box(modifier = Modifier.fillMaxHeight().background(Color.Unspecified)) {
+    Box(modifier = Modifier.fillMaxSize().background(Color.Unspecified)) {
 
-        getPostsCard(viewModel =viewModel)
+        if (viewModel.isLoading) {
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+        } else {
+            GetPostsCard(viewModel = viewModel)
+        }
+
 
         FloatingActionButton(
             onClick = {
                 Toast.makeText(context, "Clicked!", Toast.LENGTH_SHORT).show()
-            }, modifier = Modifier.align(Alignment.BottomEnd)
+            },
+            modifier = Modifier.align(Alignment.BottomEnd)
                 .padding(20.dp)
         ) {
             Text("+", fontSize = 16.sp)
         }
 //        MessageCard(SampleData.conversationSample)
-
     }
-
 
 }
 
 
 @Composable
-fun getPostsCard(viewModel: PostsViewModel) {
-    LazyColumn() {
-        items(viewModel.postMutableLiveData) { posts->
+fun GetPostsCard(viewModel: PostsViewModel) {
+
+    LazyColumn {
+        items(viewModel.postMutableLiveData) { posts ->
             CardView(posts)
         }
     }
@@ -157,19 +164,15 @@ fun MessageCard(msgs: List<Message>) {
         contentPadding = PaddingValues(10.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp),
     ) {
-
         item {
             Column {
-                Text(
-                    text = "Hello Android!",
-                )
-
+                Text(text = "Hello Android!",)
                 Text(
                     "Hello With background and font weight",
-                    modifier = Modifier.padding(10.dp)
-                        .background(
-                            shape = Shapes.small, color = Teal200
-                        ).padding(10.dp),
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .background(shape = Shapes.small, color = Teal200)
+                        .padding(10.dp),
                     color = Color.DarkGray,
                     fontSize = 25.sp,
                     fontWeight = FontWeight.ExtraLight
@@ -248,7 +251,7 @@ fun MessageCard(msgs: List<Message>) {
 fun Messages(msg: Message) {
     // We keep track if the message is expanded or not in this
     // variable
-    var isExpanded = remember { mutableStateOf(false) }
+    val isExpanded = remember { mutableStateOf(false) }
 
     // We toggle the isExpanded variable when we click on this Column
     Column(modifier = Modifier.clickable { isExpanded != isExpanded }) {
