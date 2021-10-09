@@ -1,4 +1,4 @@
-package com.softradix.jetpackcomposedemo
+package com.softradix.jetpackcomposedemo.repositories
 
 import com.softradix.jetpackcomposedemo.data.Posts
 import com.softradix.jetpackcomposedemo.data.network.ApiService

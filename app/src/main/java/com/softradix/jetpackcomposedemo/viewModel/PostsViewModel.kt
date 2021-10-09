@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.softradix.jetpackcomposedemo.PostsRepository
+import com.softradix.jetpackcomposedemo.repositories.PostsRepository
 import com.softradix.jetpackcomposedemo.data.Posts
 import com.softradix.jetpackcomposedemo.data.network.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel

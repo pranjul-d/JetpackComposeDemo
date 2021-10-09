@@ -1,5 +1,6 @@
-package com.softradix.jetpackcomposedemo
+package com.softradix.jetpackcomposedemo.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -37,7 +38,11 @@ import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.softradix.jetpackcomposedemo.Message
+import com.softradix.jetpackcomposedemo.R
 import com.softradix.jetpackcomposedemo.data.Posts
+import com.softradix.jetpackcomposedemo.ui.BoxConstraintsActivity
+import com.softradix.jetpackcomposedemo.ui.Greeting2
 import com.softradix.jetpackcomposedemo.ui.theme.JetpackComposeDemoTheme
 import com.softradix.jetpackcomposedemo.ui.theme.Purple200
 import com.softradix.jetpackcomposedemo.ui.theme.Shapes
@@ -45,7 +50,6 @@ import com.softradix.jetpackcomposedemo.ui.theme.Teal200
 import com.softradix.jetpackcomposedemo.viewModel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-@ExperimentalAnimationApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
@@ -58,24 +62,21 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             JetpackComposeDemoTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    MainView()
+                    Greeting("Android", viewModel = viewModel)
                 }
             }
         }
     }
 
-    @Preview
-    @Composable
-    fun MainView() {
-        Greeting("Android", viewModel = viewModel)
-
-    }
 
 }
+@Preview
+@Composable
+fun MainView() {
+    Greeting2("Hello There!")
+}
 
-@ExperimentalAnimationApi
 @Composable
 fun Greeting(name: String, viewModel: PostsViewModel) {
     val context = LocalContext.current
@@ -124,7 +125,7 @@ fun CardView(posts: Posts) {
         elevation = 5.dp,
         shape = RoundedCornerShape(5.dp),
         modifier = Modifier.padding(10.dp).clickable {
-            Toast.makeText(context, "Card View Clicked!", Toast.LENGTH_SHORT).show()
+            context.startActivity(Intent(context,BoxConstraintsActivity::class.java))
         }
     ) {
         Column(modifier = Modifier.fillMaxWidth().padding(5.dp)) {
@@ -237,7 +238,6 @@ fun MessageCard(msgs: List<Message>) {
                         Text("Enter you name")
                     }
                 )
-
             }
         }
         items(msgs) { item: Message ->
@@ -252,10 +252,11 @@ fun Messages(msg: Message) {
     // We keep track if the message is expanded or not in this
     // variable
     val isExpanded = remember { mutableStateOf(false) }
-
+    val context = LocalContext.current
     // We toggle the isExpanded variable when we click on this Column
-    Column(modifier = Modifier.clickable { isExpanded != isExpanded }) {
+    Column(modifier = Modifier.clickable { isExpanded != isExpanded
 
+    }) {
         Spacer(modifier = Modifier.height(4.dp))
 
         Surface(

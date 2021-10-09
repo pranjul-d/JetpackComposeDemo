@@ -1,6 +1,6 @@
 package com.softradix.jetpackcomposedemo.di
 
-import com.softradix.jetpackcomposedemo.PostsRepository
+import com.softradix.jetpackcomposedemo.repositories.PostsRepository
 import com.softradix.jetpackcomposedemo.data.network.ApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
