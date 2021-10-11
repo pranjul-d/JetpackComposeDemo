@@ -1,5 +1,6 @@
 package com.softradix.jetpackcomposedemo.database
 
+import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.softradix.jetpackcomposedemo.database.dao.UserDao
 import com.softradix.jetpackcomposedemo.database.entity.Playlist
@@ -7,7 +8,7 @@ import com.softradix.jetpackcomposedemo.database.entity.PlaylistSongCrossRef
 import com.softradix.jetpackcomposedemo.database.entity.Song
 import com.softradix.jetpackcomposedemo.database.entity.User
 
-@androidx.room.Database(
+@Database(
     entities = [User::class, Playlist::class, Song::class, PlaylistSongCrossRef::class],
     exportSchema = false,
     version = 1

@@ -45,7 +45,6 @@ class BoxConstraintsActivity : ComponentActivity() {
             }
         }
     }
-
 }
 
 @Composable

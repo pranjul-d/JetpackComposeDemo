@@ -55,6 +55,7 @@ fun NestDb(viewModel: UserViewModel = hiltViewModel()) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     var userId by remember { mutableStateOf("") }
+
     // Insert Data
     viewModel.addUser(userData)
     viewModel.addPlaylist(PlaylistData)
@@ -120,7 +121,6 @@ fun NestDb(viewModel: UserViewModel = hiltViewModel()) {
 
                 if (getUserPlaylistWithSong.isNotEmpty()) {
                     LazyColumn {
-
                         item {
                             UserHeader()
                         }
@@ -144,14 +144,13 @@ fun NestDb(viewModel: UserViewModel = hiltViewModel()) {
                                     text = "Playlist Id",
                                     modifier = Modifier.weight(0.3f),
                                     color = Color.White,
-                                    fontWeight = FontWeight.Bold
-                                )
+                                    fontWeight = FontWeight.Bold)
+
                                 Text(
                                     text = "Playlist Name",
                                     modifier = Modifier.weight(0.3f),
                                     color = Color.White,
-                                    fontWeight = FontWeight.Bold
-                                )
+                                    fontWeight = FontWeight.Bold)
                             }
                         }
 
@@ -330,6 +329,7 @@ val PlaylistData = listOf(
     Playlist(1, 1, "PlayList 1"),
     Playlist(2, 2, "PlayList 2"),
     Playlist(3, 1, "PlayList 3"),
+    Playlist(3, 3, "PlayList 3"),
     Playlist(4, 2, "PlayList 4"),
     Playlist(5, 4, "PlayList 5"),
     Playlist(6, 5, "PlayList 6"),
