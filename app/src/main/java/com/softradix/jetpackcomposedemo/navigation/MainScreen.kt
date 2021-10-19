@@ -1,7 +1,6 @@
 package com.softradix.jetpackcomposedemo.navigation
 
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -12,7 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.google.gson.Gson
 import com.softradix.jetpackcomposedemo.navigation.navUtils.Screen
+import com.squareup.moshi.Moshi
 
 @Composable
 fun MainScreen(navController: NavController) {
@@ -40,15 +41,23 @@ fun MainScreen(navController: NavController) {
 
         Button(onClick = {
             val user = UserDetail(textState, age)
-            Toast.makeText(context, user.toString(), Toast.LENGTH_SHORT).show()
 
 
             try {
-                navController.currentBackStackEntry?.arguments?.putParcelable("user", user)
+                val jsonString = Gson().toJson(user)
+                val moshi = Moshi.Builder().build()
+                val jsonAdapter = moshi
+                    .adapter(UserDetail::class.java)
+                    .lenient()
+                val userJson = jsonAdapter.toJson(user)
+
+                navController.currentBackStackEntry?.
+                savedStateHandle?.set("user", user)
                 navController
                     .navigate(Screen.DetailScreen.route)
-            }catch (e:Exception){
-                Log.e("ExceptionData",e.localizedMessage)
+//                            "/$jsonString")
+            } catch (e: Exception) {
+                Log.e("ExceptionData", e.toString())
             }
 
 

@@ -11,9 +11,10 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun DetailsScreen(data: UserDetail?){
 
-    Column(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
-        data?.name?.let { Text(it) }
-        data?.age?.let { Text(it) }
+    Column(modifier = Modifier.fillMaxSize()
+        .background(color = Color.Black)) {
+        data?.name?.let { Text(it,color = Color.White) }
+        data?.age?.let { Text(it,color = Color.White) }
     }
 
 }

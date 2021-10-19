@@ -13,9 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JetpackComposeDemo">
         <activity
-            android:name=".navigation.NavigationActivity"
+            android:name=".scaffold.ScaffoldActivity"
             android:exported="true"
-            android:label="@string/title_activity_navigation"
+            android:label="@string/title_activity_scaffold"
             android:theme="@style/Theme.JetpackComposeDemo.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,17 +24,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.RoomDbActivity"
+            android:name=".navigation.NavigationActivity"
             android:exported="true"
-            android:label="@string/title_activity_room_db"
+            android:label="@string/title_activity_navigation"
             android:theme="@style/Theme.JetpackComposeDemo.NoActionBar">
 
         </activity>
         <activity
+            android:name=".ui.RoomDbActivity"
+            android:exported="true"
+            android:label="@string/title_activity_room_db"
+            android:theme="@style/Theme.JetpackComposeDemo.NoActionBar"></activity>
+        <activity
             android:name=".ui.BoxConstraintsActivity"
             android:exported="true"
             android:label="@string/title_activity_box_constraints"
-            android:theme="@style/Theme.JetpackComposeDemo.NoActionBar"></activity>
+            android:theme="@style/Theme.JetpackComposeDemo.NoActionBar" />
         <activity
             android:name=".ui.LauncherActivity"
             android:exported="true"
