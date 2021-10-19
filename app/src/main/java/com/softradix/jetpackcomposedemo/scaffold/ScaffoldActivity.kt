@@ -61,7 +61,7 @@ fun ScaffoldView() {
         },
         drawerContent = { Drawer() },
         bottomBar = { BottomBar() },
-        content = { Body()},
+        content = { Body() },
         floatingActionButton = {
             // Create a floating action button in
             // floatingActionButton parameter of scaffold
@@ -128,9 +128,8 @@ fun TopBar(onMenuClick: () -> Unit) {
     }, navigationIcon = {
         Icon(
             imageVector = Icons.Default.Menu, contentDescription = null,
-            modifier = Modifier.padding(horizontal = 10.dp).clickable {
-                onMenuClick()
-            }, tint = Color.White
+            modifier = Modifier.padding(horizontal = 10.dp).clickable { onMenuClick() },
+            tint = Color.White
         )
     }, backgroundColor = Teal200
     )
