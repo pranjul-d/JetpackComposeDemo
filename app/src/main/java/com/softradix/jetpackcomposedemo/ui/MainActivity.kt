@@ -41,7 +41,7 @@ import androidx.compose.ui.unit.sp
 import com.softradix.jetpackcomposedemo.Message
 import com.softradix.jetpackcomposedemo.R
 import com.softradix.jetpackcomposedemo.data.Posts
-import com.softradix.jetpackcomposedemo.ui.BoxConstraintsActivity
+import com.softradix.jetpackcomposedemo.harency.BoxConstraintsActivity
 import com.softradix.jetpackcomposedemo.ui.Greeting2
 import com.softradix.jetpackcomposedemo.ui.theme.JetpackComposeDemoTheme
 import com.softradix.jetpackcomposedemo.ui.theme.Purple200
@@ -125,7 +125,7 @@ fun CardView(posts: Posts) {
         elevation = 5.dp,
         shape = RoundedCornerShape(5.dp),
         modifier = Modifier.padding(10.dp).clickable {
-            context.startActivity(Intent(context,BoxConstraintsActivity::class.java))
+            context.startActivity(Intent(context, BoxConstraintsActivity::class.java))
         }
     ) {
         Column(modifier = Modifier.fillMaxWidth().padding(5.dp)) {

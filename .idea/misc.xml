@@ -38,10 +38,23 @@
         <entry key="../../../../layout/compose-model-1633955139105.xml" value="1.0" />
         <entry key="../../../../layout/compose-model-1634622625182.xml" value="0.1858108108108108" />
         <entry key="../../../../layout/compose-model-1634624573113.xml" value="0.18" />
+        <entry key="../../../../layout/compose-model-1634803258132.xml" value="0.1020066889632107" />
+        <entry key="../../../../layout/compose-model-1634809908437.xml" value="0.1020066889632107" />
+        <entry key="../../../../layout/compose-model-1635141498178.xml" value="0.12186454849498328" />
+        <entry key="../../../../layout/compose-model-1635141562660.xml" value="0.4832904884318766" />
+        <entry key="../../../../layout/compose-model-1635141611298.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1635155669592.xml" value="0.22" />
+        <entry key="../../../../layout/compose-model-1635159916251.xml" value="0.4463452566096423" />
+        <entry key="../../../../layout/compose-model-1635164776792.xml" value="0.4463452566096423" />
+        <entry key="../../../../layout/compose-model-1635166062436.xml" value="0.23057432432432431" />
+        <entry key="../../../../layout/compose-model-1635169010161.xml" value="0.23057432432432431" />
         <entry key="app/src/main/res/drawable/bg_circle.xml" value="0.2171875" />
         <entry key="app/src/main/res/drawable/btn_bg.xml" value="0.13072916666666667" />
+        <entry key="app/src/main/res/drawable/ic_arrow_down.xml" value="0.2657407407407407" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.2657407407407407" />
         <entry key="app/src/main/res/drawable/ic_baseline_stay_current_landscape_24.xml" value="0.2171875" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2171875" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.2657407407407407" />
       </map>
     </option>
   </component>
@@ -50,7 +63,7 @@
       <item index="0" class="java.lang.String" itemvalue="androidx.compose.runtime.Composable" />
     </list>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -16,12 +16,8 @@
             android:name=".scaffold.ScaffoldActivity"
             android:exported="true"
             android:label="@string/title_activity_scaffold"
-            android:theme="@style/Theme.JetpackComposeDemo.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.JetpackComposeDemo.NoActionBar">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".navigation.NavigationActivity"
@@ -34,12 +30,19 @@
             android:name=".ui.RoomDbActivity"
             android:exported="true"
             android:label="@string/title_activity_room_db"
-            android:theme="@style/Theme.JetpackComposeDemo.NoActionBar"></activity>
+            android:theme="@style/Theme.JetpackComposeDemo.NoActionBar" />
         <activity
-            android:name=".ui.BoxConstraintsActivity"
+            android:name=".harency.BoxConstraintsActivity"
             android:exported="true"
             android:label="@string/title_activity_box_constraints"
-            android:theme="@style/Theme.JetpackComposeDemo.NoActionBar" />
+            android:theme="@style/Theme.JetpackComposeDemo.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".ui.LauncherActivity"
             android:exported="true"

@@ -21,7 +21,6 @@ class PostApplication : Application(){
 
     override fun onCreate() {
         super.onCreate()
-        // initialize for any
 
         // Use ApplicationContext.
         val context: Context = getContext()
