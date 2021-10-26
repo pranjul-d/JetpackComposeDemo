@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
 import com.softradix.jetpackcomposedemo.R
+import com.softradix.jetpackcomposedemo.navigation.navUtils.Screen
 import com.softradix.jetpackcomposedemo.ui.theme.Purple500
 import com.softradix.jetpackcomposedemo.utils.DrawableWrapper
 
@@ -125,8 +126,7 @@ fun LoginCardView(navController: NavController) {
                                 start = 20.dp,
                             )
                             .clickable {
-
-
+                                navController.navigate(Screen.CountryCodeScreen.route)
                             },
                     )
                 }

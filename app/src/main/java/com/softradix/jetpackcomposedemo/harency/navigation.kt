@@ -9,11 +9,13 @@ import com.softradix.jetpackcomposedemo.navigation.navUtils.Screen
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.LoginScreen.route) {
+    NavHost(navController = navController,
+        startDestination = Screen.LoginScreen.route) {
         composable(route = Screen.LoginScreen.route) {
+            HarencyLoginScreen(navController = navController)
         }
         composable(route = Screen.CountryCodeScreen.route) {
-
+            CountryCodeScreen()
         }
     }
 
