@@ -21,7 +21,8 @@ fun Navigation() {
         composable(route = Screen.MainScreen.route) {
             MainScreen(navController)
         }
-        composable(route = "${Screen.DetailScreen.route}/{user}", arguments = listOf(
+        composable(route = "${Screen.DetailScreen.route}/{user}",
+            arguments = listOf(
             navArgument("user") {
                 type = NavType.StringType
             }

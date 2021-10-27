@@ -3,6 +3,7 @@ package com.softradix.jetpackcomposedemo.harency
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -26,26 +27,33 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.softradix.jetpackcomposedemo.R
 import com.softradix.jetpackcomposedemo.data.CountriesItem
+import com.softradix.jetpackcomposedemo.navigation.navUtils.Screen
 import com.softradix.jetpackcomposedemo.ui.theme.Purple500
 import com.softradix.jetpackcomposedemo.utils.Utilities
+import java.util.*
+import kotlin.collections.ArrayList
 
-@Preview(showBackground = true, device = Devices.NEXUS_5X)
 @Composable
-fun CountryCodeScreen() {
+fun CountryCodeScreen(navController: NavController) {
     val context = LocalContext.current
-    val countries = remember { Utilities.generateList(context) }
+    val countries = Utilities.generateList(context)
+    var filteredCountries: ArrayList<CountriesItem>
 
-    var search by remember {
-        mutableStateOf(TextFieldValue(""))
-    }
+    var search by remember { mutableStateOf(TextFieldValue("")) }
     Column(modifier = Modifier.fillMaxSize()) {
         Box(modifier = Modifier.fillMaxWidth()) {
             Image(
                 modifier = Modifier
                     .padding()
-                    .padding(16.dp),
+                    .padding(16.dp)
+                    .clickable {
+
+
+                        navController.navigateUp()
+                    },
                 painter = painterResource(id = R.drawable.ic_back),
                 contentDescription = null
             )
@@ -62,9 +70,7 @@ fun CountryCodeScreen() {
         TextField(value = search,
             onValueChange = {
                 search = it
-                if (!search.text.isNullOrEmpty()) {
-                    findCountry(search.text, countries)
-                }
+
 
             }, modifier = Modifier
                 .padding(horizontal = 20.dp)
@@ -90,11 +96,29 @@ fun CountryCodeScreen() {
         LazyColumn(
             modifier = Modifier.padding(5.dp),
         ) {
-            items(countries) { country ->
-//                val state = rememberSaveable(country) { mutableStateOf(ItemState()) }
-//                key(country) {
-//                }
-                CountryCodeCard(country)
+            val searchText = search.text
+            filteredCountries = if (searchText.isEmpty()) {
+                countries
+            } else {
+                val result = ArrayList<CountriesItem>()
+                for (country in countries) {
+                    if (country.name.lowercase(Locale.getDefault())
+                            .contains(searchText.lowercase(Locale.getDefault()))
+                    ) {
+                        result.add(country)
+                    }
+                }
+                result
+            }
+            items(filteredCountries) { country ->
+
+//                CountryCodeCard(country, onItemClick = {
+//                    navController.previousBackStackEntry?.savedStateHandle?.set("data", country)
+////                    arguments?.apply {
+////                        putParcelable("data", country)
+////                    }
+//                    navController.navigate(Screen.LoginScreen.route.withArgs())
+//                })
             }
         }
     }

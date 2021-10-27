@@ -1,12 +1,17 @@
 package com.softradix.jetpackcomposedemo.utils
 
 import android.content.Context
+import androidx.compose.foundation.clickable
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.softradix.jetpackcomposedemo.data.CountriesItem
+import com.softradix.jetpackcomposedemo.navigation.navUtils.Screen
 import java.io.IOException
 import java.lang.reflect.Type
+import kotlin.reflect.KClass
 
 object Utilities {
     fun generateList(context: Context): ArrayList<CountriesItem> {
@@ -32,7 +37,18 @@ object Utilities {
     }
 }
 
-fun <T> SnapshotStateList<T>.swapList(newList: List<T>){
+fun Modifier.navigateUp(navController: NavController, data:Any?, route: String) {
+    clickable {
+        navController.currentBackStackEntry?.savedStateHandle?.set("data", data)
+        navController.navigate(route)
+    }
+}
+
+fun Modifier.navigateUp(navController: NavController, route: String) {
+    clickable { navController.navigate(route) }
+}
+
+fun <T> SnapshotStateList<T>.swapList(newList: List<T>) {
     clear()
     addAll(newList)
 }

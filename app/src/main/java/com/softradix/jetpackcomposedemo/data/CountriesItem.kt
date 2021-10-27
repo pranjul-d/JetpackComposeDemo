@@ -1,8 +1,11 @@
 package com.softradix.jetpackcomposedemo.data
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class CountriesItem(
     @SerializedName("CodeTelePhone")
     val codeTelePhone: String,
@@ -12,4 +15,4 @@ data class CountriesItem(
     val id: Int,
     @SerializedName("Name")
     val name: String
-)
+):Parcelable

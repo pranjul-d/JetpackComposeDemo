@@ -1,5 +1,6 @@
 package com.softradix.jetpackcomposedemo.harency
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,12 +19,12 @@ import androidx.compose.ui.unit.dp
 import com.softradix.jetpackcomposedemo.data.CountriesItem
 
 @Composable
-fun CountryCodeCard(country: CountriesItem?) {
+fun CountryCodeCard(country: CountriesItem?,onItemClick:()->Unit) {
 
     Card(
-        modifier = Modifier.padding(10.dp),
+        modifier = Modifier.padding(10.dp).clickable { onItemClick() },
         elevation = 5.dp,
-        shape = RoundedCornerShape(10.dp),
+        shape = RoundedCornerShape(10.dp)
     ) {
         Row(
             modifier = Modifier

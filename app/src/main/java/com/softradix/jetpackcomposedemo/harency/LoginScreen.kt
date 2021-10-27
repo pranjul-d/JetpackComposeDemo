@@ -1,5 +1,6 @@
 package com.softradix.jetpackcomposedemo.harency
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -8,9 +9,11 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -24,12 +27,20 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
 import com.softradix.jetpackcomposedemo.R
+import com.softradix.jetpackcomposedemo.data.CountriesItem
 import com.softradix.jetpackcomposedemo.navigation.navUtils.Screen
 import com.softradix.jetpackcomposedemo.ui.theme.Purple500
 import com.softradix.jetpackcomposedemo.utils.DrawableWrapper
+import kotlin.reflect.KClass
+import androidx.appcompat.app.AppCompatActivity
+
+
+
 
 @Composable
+
 fun HarencyLoginScreen(navController: NavController) {
+
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (textConstraints, cardView, bottomConstraints) = createRefs()
         Column(modifier = Modifier
@@ -73,12 +84,25 @@ fun HarencyLoginScreen(navController: NavController) {
 
 @Composable
 fun LoginCardView(navController: NavController) {
+    val context = LocalContext.current
+
+
+//    val country = remember { navController.previousBackStackEntry?.savedStateHandle?.get<CountriesItem>("data") }
+//    Log.e("TAG", "LoginCardView: ${getData?.value?.icCode}", )
+
+
     var phoneNumber by remember {
         mutableStateOf(TextFieldValue(""))
+    }
+    var countryCode by remember {
+        mutableStateOf(/*country ?:*/"+91")
     }
     var password by remember {
         mutableStateOf(TextFieldValue(""))
     }
+
+
+
 
     Card(
         elevation = 5.dp,
@@ -111,10 +135,9 @@ fun LoginCardView(navController: NavController) {
                         backgroundColor = Color.White,
                     ),
                 )
-
                 DrawableWrapper(drawableEnd = R.drawable.ic_arrow_down) {
                     Text(
-                        text = "+999",
+                        text = countryCode,
                         style = TextStyle(
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Black
